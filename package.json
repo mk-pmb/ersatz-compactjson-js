@@ -1,0 +1,25 @@
+{ "name": "ersatz-compactjson",
+  "version": "0.1.1",
+  "description": "Shim for when you cannot use compactjson.",
+  "keywords": [
+    "compact",
+    "compactjson",
+    "JSON",
+    "shim"
+  ],
+
+  "author": "M.K. (https://github.com/mk-pmb)",
+  "homepage": "https://github.com/mk-pmb/ersatz-compactjson-js#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mk-pmb/ersatz-compactjson-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mk-pmb/ersatz-compactjson-js/issues"
+  },
+
+  "private": false, "license": "ISC",
+  "main": "shim.compactjson.js",
+
+  "npm vs. BOM = Unexpected token": "-*- coding: UTF-8 -*-"
+}
