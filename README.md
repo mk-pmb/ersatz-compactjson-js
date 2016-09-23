@@ -5,7 +5,8 @@ ersatz-compactjson
 <!--/#echo -->
 
 <!--#echo json="package.json" key="description" -->
-Shim for when you cannot use compactjson.
+Shim: Render compact JSON even if you cannot use compactjson (for whatever
+reason, including management decisions).
 <!--/#echo -->
 
 
