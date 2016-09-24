@@ -21,6 +21,7 @@ var compactJson = require('ersatz-compactjson'),
   jsonText = compactJson(data);
 console.log(jsonText);
 ```
+<!--/#include -->
 
 
 License

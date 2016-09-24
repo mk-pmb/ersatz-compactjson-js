@@ -1,5 +1,5 @@
 { "name": "ersatz-compactjson",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Shim: Render compact JSON even if you cannot use compactjson (for whatever reason, including management decisions).",
   "keywords": [
     "compact",

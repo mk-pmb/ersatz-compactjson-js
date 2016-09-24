@@ -3,8 +3,12 @@
 'use strict';
 
 module.exports = (function () {
-  function cj(x) {
-    x = JSON.stringify(x, null, 2);
+  var cj;
+
+  cj = function cj(x, opt) {
+    opt = (opt || false);
+
+    x = JSON.stringify(x, (opt.serializer || null), 2);
     x = x.replace(/(\n\s*|$)/g, '\r$1\r');
 
     // merge opening brackets
@@ -17,26 +21,25 @@ module.exports = (function () {
     x = x.replace(/,\r(\n\s*)\r((?:"\w+":|) *(?:\[|\{))/g, ',$1$2');
     x = x.replace(/(["\*-Z_-z],)[\r\n]+ *(?=\r)/g, '$1 ');
 
-    x = cj.ersatzLineWrap(x);
+    if (opt.ersLW) {
+      x = opt.ersLW(x, { width: opt.width, indent: '  ',
+        splitAtRgx: /(,)(\s*)(?=\r)/ });
+    }
+    if (opt.lineWrap) { x = opt.lineWrap(x, opt.lineWrapOpts); }
     x = x.replace(/\r/g, '');
+
+    if (opt.ersLW) { x = opt.ersLW.unwrap(x, opt.unwrap); }
     return x;
-  }
+  };
 
-  cj.ersatzLineWrap = (function () {
-    var elw = function ersatzLineWrap(s) {
-      do {
-        elw.had = false;
-        s = s.replace(elw.rx, elw.rpl);
-      } while (elw.had);
-      return s;
-    };
-    elw.rx = /(^|\n)[\S \t\r]{72}\S*\r/g;
-    elw.rpl = function (m) {
-      elw.had = true;
-      return m.replace(/\s+$/, '\n' + m.match(/^[\r\n]*([ \t]*)/)[1]);
-    };
-    return elw;
-  }());
 
-  return function ersatzCompactJson(x) { return cj(x); };
+
+
+
+
+
+
+
+
+  return function ersatzCompactJson(x, opt) { return cj(x, opt); };
 }());
